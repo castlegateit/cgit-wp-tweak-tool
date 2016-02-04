@@ -26,7 +26,7 @@ The options are stored as an associative array, with the following default value
         'hide_menus' => [],
         'hide_notifications' => true,
         'welcome_message' => false,
-        'whitelist' => [],
+        'user_whitelist' => [],
     ];
 
 There are several ways of editing the options. You can change one or more options using the `Cgit\TweakTool` object:
@@ -93,7 +93,7 @@ If the custom welcome message contains `%s`, it will include the current user's 
 The `hide_menus` and `hide_notifications` options only affect non-admin users. This can be restricted further by providing a whitelist of user IDs:
 
     $options = [
-        'whitelist' => [1, 4],
+        'user_whitelist' => [1, 4],
     ];
 
 This is useful when a client has been given an administrator account (e.g. to edit users) but you still want to hide some menus and notifications from their account.

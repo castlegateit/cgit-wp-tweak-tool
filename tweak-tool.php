@@ -12,10 +12,11 @@ class TweakTool
     /**
      * Default options
      *
-     * The whitelist is an array of user IDs that should be considered site
-     * administrators. The hide menus option accepts an array consisting of one
-     * or more of: posts, media, links, pages, comments, themes, plugins,
-     * profile, users, tools, settings, categories, tags.
+     * The user whitelist is an array of user IDs or a single user ID that
+     * should be considered the site administrator(s). The hide menus option
+     * accepts an array consisting of one or more of: posts, media, links,
+     * pages, comments, themes, plugins, profile, users, tools, settings,
+     * categories, tags.
      */
     private $defaultOptions = [
         'force_plain_text_paste' => false,
@@ -26,7 +27,7 @@ class TweakTool
         'hide_menus' => [],
         'hide_notifications' => true,
         'welcome_message' => false,
-        'whitelist' => [],
+        'user_whitelist' => [],
     ];
 
     /**
@@ -323,8 +324,14 @@ class TweakTool
      */
     private function isAdmin()
     {
-        if ($this->options['whitelist']) {
-            return in_array(get_current_user_id(), $this->options['whitelist']);
+        $whitelist = $this->options['user_whitelist'];
+
+        if ($whitelist) {
+            if (!is_array($whitelist)) {
+                $whitelist = [$whitelist];
+            }
+
+            return in_array(get_current_user_id(), $whitelist);
         }
 
         return current_user_can('manage_options');
