@@ -12,11 +12,13 @@ License: MIT
 
 */
 
-add_action('plugins_loaded', function() {
+require __DIR__ . '/src/autoload.php';
 
-    // Includes
-    include dirname(__FILE__) . '/tweak-tool.php';
-    include dirname(__FILE__) . '/functions.php';
+/**
+ * Load plugin
+ */
+add_action('plugins_loaded', function() {
+    require __DIR__ . '/functions.php';
 
     // Initialization
     Cgit\TweakTool::getInstance();
