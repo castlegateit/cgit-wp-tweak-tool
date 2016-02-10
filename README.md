@@ -55,8 +55,8 @@ You can use the `cgit_tweak_tool()` function itself to edit multiple options:
 
 You can also use the `cgit_tweak_tool_options` filter:
 
-    add_filter('cgit_tweak_tool_options', filter($options) {
-        $option['hide_admin_bar'] = true,
+    add_filter('cgit_tweak_tool_options', function($options) {
+        $options['hide_admin_bar'] = true;
         return $options;
     });
 
