@@ -79,6 +79,7 @@ You can hide most of the main menus in the dashboard:
             'users',
             'tools',
             'settings',
+            'custom_fields', // ACF
             'categories',
             'tags',
         ],

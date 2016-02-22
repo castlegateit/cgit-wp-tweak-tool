@@ -247,6 +247,7 @@ class TweakTool
                 'users' => 'users.php',
                 'tools' => 'tools.php',
                 'settings' => 'options-general.php',
+                'custom_fields' => 'edit.php?post_type=acf-field-group',
             ];
 
             $submenus = [
