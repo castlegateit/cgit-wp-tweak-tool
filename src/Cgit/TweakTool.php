@@ -323,7 +323,7 @@ class TweakTool
      * role. If the whitelist option is set, administrators are those users with
      * IDs that appear in the whitelist array.
      */
-    private function isAdmin()
+    public function isAdmin()
     {
         $whitelist = $this->options['user_whitelist'];
 
