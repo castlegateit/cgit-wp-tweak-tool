@@ -17,48 +17,56 @@ Another plugin that makes it easy to tweak the WordPress admin interface, includ
 
 The options are stored as an associative array, with the following default values:
 
-    $options = [
-        'force_plain_text_paste' => false,
-        'hide_admin_bar' => false,
-        'hide_editor_buttons' => true,
-        'hide_editor_elements' => true,
-        'hide_media_buttons' => true,
-        'hide_menus' => [],
-        'hide_notifications' => true,
-        'welcome_message' => false,
-        'user_whitelist' => [],
-    ];
+~~~ php
+$options = [
+    'force_plain_text_paste' => false,
+    'hide_admin_bar' => false,
+    'hide_editor_buttons' => true,
+    'hide_editor_elements' => true,
+    'hide_media_buttons' => true,
+    'hide_menus' => [],
+    'hide_notifications' => true,
+    'welcome_message' => false,
+    'user_whitelist' => [],
+];
+~~~
 
 There are several ways of editing the options. You can change one or more options using the `Cgit\TweakTool` object:
 
-    $tool = Cgit\TweakTool::getInstance();
-    $tool = cgit_tweak_tool(); // equivalent to the previous line
+~~~ php
+$tool = Cgit\TweakTool::getInstance();
+$tool = cgit_tweak_tool(); // equivalent to the previous line
 
-    // Change multiple options
-    $tool->tweak([
-        'hide_admin_bar' => true,
-        'hide_menus' => [
-            'posts',
-            'pages',
-        ],
-    ]);
+// Change multiple options
+$tool->tweak([
+    'hide_admin_bar' => true,
+    'hide_menus' => [
+        'posts',
+        'pages',
+    ],
+]);
 
-    // Change options individually
-    $tool->tweak('hide_admin_bar', true);
-    $tool->tweak('hide_menus', ['posts', 'pages']);
+// Change options individually
+$tool->tweak('hide_admin_bar', true);
+$tool->tweak('hide_menus', ['posts', 'pages']);
+~~~
 
 You can use the `cgit_tweak_tool()` function itself to edit multiple options:
 
-    cgit_tweak_tool([
-        'hide_admin_bar' => true,
-    ]);
+~~~ php
+cgit_tweak_tool([
+    'hide_admin_bar' => true,
+]);
+~~~
 
 You can also use the `cgit_tweak_tool_options` filter:
 
-    add_filter('cgit_tweak_tool_options', function($options) {
-        $options['hide_admin_bar'] = true;
-        return $options;
-    });
+~~~ php
+add_filter('cgit_tweak_tool_options', function($options) {
+    $options['hide_admin_bar'] = true;
+    return $options;
+});
+~~~
 
 Options set with the filter will override any options set using the object method.
 
@@ -66,24 +74,26 @@ Options set with the filter will override any options set using the object metho
 
 You can hide most of the main menus in the dashboard:
 
-    $options = [
-        'hide_menus' => [
-            'posts',
-            'media',
-            'links',
-            'pages',
-            'comments',
-            'themes',
-            'plugins',
-            'profile',
-            'users',
-            'tools',
-            'settings',
-            'custom_fields', // ACF
-            'categories',
-            'tags',
-        ],
-    ];
+~~~ php
+$options = [
+    'hide_menus' => [
+        'posts',
+        'media',
+        'links',
+        'pages',
+        'comments',
+        'themes',
+        'plugins',
+        'profile',
+        'users',
+        'tools',
+        'settings',
+        'custom_fields', // ACF
+        'categories',
+        'tags',
+    ],
+];
+~~~
 
 ### Editing the welcome message ###
 
@@ -93,9 +103,11 @@ If the custom welcome message contains `%s`, it will include the current user's 
 
 The `hide_menus` and `hide_notifications` options only affect non-admin users. This can be restricted further by providing a whitelist of user IDs:
 
-    $options = [
-        'user_whitelist' => [1, 4],
-    ];
+~~~ php
+$options = [
+    'user_whitelist' => [1, 4],
+];
+~~~
 
 This is useful when a client has been given an administrator account (e.g. to edit users) but you still want to hide some menus and notifications from their account.
 
