@@ -335,7 +335,7 @@ class TweakTool
             return in_array(get_current_user_id(), $whitelist);
         }
 
-        return current_user_can('manage_options');
+        return current_user_can('update_core');
     }
 
     /**
