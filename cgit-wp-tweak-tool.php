@@ -5,7 +5,7 @@
 Plugin Name: Castlegate IT WP Tweak Tool
 Plugin URI: http://github.com/castlegateit/cgit-wp-tweak-tool
 Description: Tweaks various parts of the WordPress dashboard.
-Version: 1.1
+Version: 1.2
 Author: Castlegate IT
 Author URI: http://www.castlegateit.co.uk/
 License: MIT
