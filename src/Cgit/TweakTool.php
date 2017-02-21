@@ -271,6 +271,26 @@ class TweakTool
                 }
             }
         });
+
+        // Items that have been removed from the main menu should also be
+        // removed from the "New" menu in the admin bar.
+        add_action('admin_bar_menu', function ($admin_bar) {
+            $nodes = [
+                'pages' => 'new-page',
+                'posts' => 'new-post',
+                'media' => 'new-media',
+            ];
+
+            if ($this->isAdmin()) {
+                return;
+            }
+
+            foreach ($nodes as $key => $node) {
+                if (in_array($key, $this->options['hide_menus'])) {
+                    $admin_bar->remove_node($node);
+                }
+            }
+        }, 999);
     }
 
     /**
