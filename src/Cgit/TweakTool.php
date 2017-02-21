@@ -276,9 +276,10 @@ class TweakTool
         // removed from the "New" menu in the admin bar.
         add_action('admin_bar_menu', function ($admin_bar) {
             $nodes = [
+                'comments' => 'comments',
+                'media' => 'new-media',
                 'pages' => 'new-page',
                 'posts' => 'new-post',
-                'media' => 'new-media',
             ];
 
             if ($this->isAdmin()) {
