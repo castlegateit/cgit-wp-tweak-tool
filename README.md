@@ -10,6 +10,7 @@ Another plugin that makes it easy to tweak the WordPress admin interface, includ
 *   Hide presentational markup controls
 *   Hide some block-level elements in the content editor
 *   Force plain text paste in the content editor
+*   Disable queries for particular page or template types
 
 ## Options ##
 
@@ -19,56 +20,27 @@ The options are stored as an associative array, with the following default value
 
 ~~~ php
 $options = [
-    'force_plain_text_paste' => false,
+    'force_plain_text_paste' => true,
     'hide_admin_bar' => false,
     'hide_editor_buttons' => true,
     'hide_editor_elements' => true,
     'hide_media_buttons' => true,
     'hide_menus' => [],
     'hide_notifications' => true,
-    'welcome_message' => false,
+    'hide_templates' => [],
     'user_whitelist' => [],
+    'welcome_message' => false,
 ];
 ~~~
 
-There are several ways of editing the options. You can change one or more options using the `Cgit\TweakTool` object:
+You can use the `cgit_tweak_tool_options` filter to edit the options:
 
 ~~~ php
-$tool = Cgit\TweakTool::getInstance();
-$tool = cgit_tweak_tool(); // equivalent to the previous line
-
-// Change multiple options
-$tool->tweak([
-    'hide_admin_bar' => true,
-    'hide_menus' => [
-        'posts',
-        'pages',
-    ],
-]);
-
-// Change options individually
-$tool->tweak('hide_admin_bar', true);
-$tool->tweak('hide_menus', ['posts', 'pages']);
-~~~
-
-You can use the `cgit_tweak_tool()` function itself to edit multiple options:
-
-~~~ php
-cgit_tweak_tool([
-    'hide_admin_bar' => true,
-]);
-~~~
-
-You can also use the `cgit_tweak_tool_options` filter:
-
-~~~ php
-add_filter('cgit_tweak_tool_options', function($options) {
+add_filter('cgit_tweak_tool_options', function ($options) {
     $options['hide_admin_bar'] = true;
     return $options;
 });
 ~~~
-
-Options set with the filter will override any options set using the object method.
 
 ### Hiding menus ###
 
@@ -110,6 +82,16 @@ $options = [
 ~~~
 
 This is useful when a client has been given an administrator account (e.g. to edit users) but you still want to hide some menus and notifications from their account.
+
+### Disabling queries ###
+
+You can disable particular queries using the `hide_templates` option. For example, the following will prevent site visitors from accessing search results or single posts (i.e. queries including `is_search` and `is_single`).
+
+~~~ php
+$options['hide_template'] = ['search', 'single'];
+~~~
+
+You can use any of the [boolean properties of `WP_Query`](https://codex.wordpress.org/Class_Reference/WP_Query) (without `is_`) to disable their corresponding templates and send 404 error messages instead.
 
 ## Admin Tweaks ##
 

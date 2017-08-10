@@ -3,24 +3,24 @@
 /*
 
 Plugin Name: Castlegate IT WP Tweak Tool
-Plugin URI: http://github.com/castlegateit/cgit-wp-tweak-tool
+Plugin URI: https://github.com/castlegateit/cgit-wp-tweak-tool
 Description: Tweaks various parts of the WordPress dashboard.
-Version: 1.3
+Version: 2.0
 Author: Castlegate IT
-Author URI: http://www.castlegateit.co.uk/
+Author URI: https://www.castlegateit.co.uk/
 License: MIT
 
 */
 
-use Cgit\TweakTool;
+if (!defined('ABSPATH')) {
+    wp_die('Access denied');
+}
 
-require __DIR__ . '/src/autoload.php';
-require __DIR__ . '/functions.php';
+define('CGIT_TWEAK_TOOL_PLUGIN', __FILE__);
 
-/**
- * Load plugin
- */
-add_action('init', function() {
-    $tool = TweakTool::getInstance();
-    $tool->update();
-});
+require_once __DIR__ . '/classes/autoload.php';
+
+$plugin = new \Cgit\TweakTool\Plugin();
+
+do_action('cgit_tweak_tool_plugin', $plugin);
+do_action('cgit_tweak_tool_loaded');
