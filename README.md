@@ -92,7 +92,3 @@ $options['hide_template'] = ['search', 'single'];
 ~~~
 
 You can use any of the [boolean properties of `WP_Query`](https://codex.wordpress.org/Class_Reference/WP_Query) (without `is_`) to disable their corresponding templates and send 404 error messages instead.
-
-## Admin Tweaks ##
-
-The options available in this plugin are also available in the [Admin Tweaks](https://github.com/castlegateit/cgit-wp-admin-tweaks) plugin. The difference is that this plugin does not store its settings in the database, which means they can be version controlled and deployed.
