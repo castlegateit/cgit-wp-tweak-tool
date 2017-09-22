@@ -27,15 +27,15 @@ class Plugin
      */
     public function __construct()
     {
-        $this->config = new Config;
+        add_action('init', function () {
+            $this->config = new Config;
 
-        foreach ($this->tweaks as $tweak) {
-            $class = '\\Cgit\\TweakTool\\Tweaks\\' . $tweak;
-            $instance = new $class($this->config);
+            foreach ($this->tweaks as $tweak) {
+                $class = '\\Cgit\\TweakTool\\Tweaks\\' . $tweak;
+                $instance = new $class($this->config);
 
-            // Some tweaks depend on the identity of the current user, which
-            // means they must run on or after the init action.
-            add_action('init', [$instance, 'tweak']);
-        }
+                $instance->tweak();
+            }
+        });
     }
 }
