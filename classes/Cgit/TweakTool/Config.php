@@ -18,6 +18,7 @@ class Config
         'hide_menus' => [],
         'hide_notifications' => true,
         'hide_templates' => [],
+        'show_nav_menus' => false,
         'user_whitelist' => [],
         'welcome_message' => false,
     ];

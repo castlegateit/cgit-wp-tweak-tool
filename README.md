@@ -30,6 +30,7 @@ $options = [
     'hide_templates' => [],
     'user_whitelist' => [],
     'welcome_message' => false,
+    'show_nav_menus' => false,
 ];
 ~~~
 
@@ -82,6 +83,20 @@ $options = [
 ~~~
 
 This is useful when a client has been given an administrator account (e.g. to edit users) but you still want to hide some menus and notifications from their account.
+
+### Showing menus without themes ###
+
+You can also use the whitelist feature to allow restricted administrator accounts to edit menus without switching themes:
+
+~~~ php
+add_filter('cgit_tweak_tool_options', function ($options) {
+    $options['user_whitelist'] = [1, 4];
+    $options['hide_menus'] = ['themes'];
+    $options['show_nav_menus'] = true;
+
+    return $options;
+});
+~~~
 
 ### Disabling queries ###
 

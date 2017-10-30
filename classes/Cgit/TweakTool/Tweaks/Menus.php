@@ -66,6 +66,7 @@ class Menus extends \Cgit\TweakTool\Tweak
     public function tweak()
     {
         $this->hidden = $this->config->get('hide_menus');
+        $this->showNavMenus = $this->config->get('show_nav_menus');
 
         $this->toggleMenus();
     }
@@ -87,6 +88,7 @@ class Menus extends \Cgit\TweakTool\Tweak
         }
 
         add_action('admin_menu', [$this, 'hideAdminMenus']);
+        add_action('admin_menu', [$this, 'showNavMenus']);
         add_action('admin_bar_menu', [$this, 'hideAdminBarMenus'], 999);
     }
 
@@ -102,6 +104,12 @@ class Menus extends \Cgit\TweakTool\Tweak
     {
         foreach ($this->menus as $key => $menu) {
             if (in_array($key, $this->hidden)) {
+                // Do not hide the themes menu entirely if we also want to show
+                // the navigation menus menu.
+                if ($key == 'themes' && $this->showNavMenus) {
+                    continue;
+                }
+
                 remove_menu_page($menu);
             }
         }
@@ -126,6 +134,35 @@ class Menus extends \Cgit\TweakTool\Tweak
             if (in_array($key, $this->hidden)) {
                 $bar->remove_node($node);
             }
+        }
+    }
+
+    /**
+     * Show navigation menus
+     *
+     * When the appearance (themes) menu page is hidden, still show the
+     * navigation menus menu page. This only applies to non-admin users,
+     * including users with the administrator role that do not appear in the
+     * admin whitelist.
+     */
+    public function showNavMenus()
+    {
+        global $submenu;
+
+        // This should only apply if the themes menu has been marked as hidden
+        // and if the navigation menus menu has been marked as visible.
+        if (!in_array('themes', $this->hidden) || !$this->showNavMenus) {
+            return;
+        }
+
+        // Hide each of the appearance submenus except for the navigation menus
+        // submenu page.
+        foreach ($submenu['themes.php'] as $item) {
+            if ($item[2] == 'nav-menus.php') {
+                continue;
+            }
+
+            remove_submenu_page('themes.php', $item[2]);
         }
     }
 }
