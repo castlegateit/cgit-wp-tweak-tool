@@ -37,11 +37,15 @@ $options = [
 You can use the `cgit_tweak_tool_options` filter to edit the options:
 
 ~~~ php
-add_filter('cgit_tweak_tool_options', function ($options) {
-    $options['hide_admin_bar'] = true;
-    return $options;
+add_action('init', function () {
+    add_filter('cgit_tweak_tool_options', function ($options) {
+        $options['hide_admin_bar'] = true;
+        return $options;
+    });
 });
 ~~~
+
+Note that the options are set in the `init` action with priority `20` so this filter must be applied earlier, either using a higher priority in the `init` action (the default value of `10` should work) or using an earlier action.
 
 ### Hiding menus ###
 

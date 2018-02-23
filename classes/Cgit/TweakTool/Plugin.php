@@ -36,6 +36,6 @@ class Plugin
 
                 $instance->tweak();
             }
-        });
+        }, 20);
     }
 }
