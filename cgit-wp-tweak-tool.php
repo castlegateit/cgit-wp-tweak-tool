@@ -8,7 +8,7 @@ Description: Tweaks various parts of the WordPress dashboard.
 Version: 2.2.1
 Author: Castlegate IT
 Author URI: https://www.castlegateit.co.uk/
-License: AGPL
+License: AGPLv3
 
 */
 
