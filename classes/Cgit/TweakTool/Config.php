@@ -21,6 +21,7 @@ class Config
         'show_nav_menus' => false,
         'user_whitelist' => [],
         'welcome_message' => false,
+        'move_yoast_to_bottom' => true,
     ];
 
     /**

@@ -11,6 +11,7 @@ Another plugin that makes it easy to tweak the WordPress admin interface, includ
 *   Hide some block-level elements in the content editor
 *   Force plain text paste in the content editor
 *   Disable queries for particular page or template types
+*   Move Yoast SEO to the bottom of editor screens
 
 ## Options ##
 
@@ -31,6 +32,7 @@ $options = [
     'user_whitelist' => [],
     'welcome_message' => false,
     'show_nav_menus' => false,
+    'move_yoast_to_bottom' => true,
 ];
 ~~~
 

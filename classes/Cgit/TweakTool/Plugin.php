@@ -15,6 +15,7 @@ class Plugin
         'Menus',
         'Notifications',
         'Templates',
+        'YoastSeo',
     ];
 
     /**
