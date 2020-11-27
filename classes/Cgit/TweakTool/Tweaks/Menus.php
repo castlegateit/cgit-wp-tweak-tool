@@ -157,6 +157,10 @@ class Menus extends \Cgit\TweakTool\Tweak
 
         // Hide each of the appearance submenus except for the navigation menus
         // submenu page.
+        if (!isset($submenu['themes.php'])) {
+            return;
+        }
+
         foreach ($submenu['themes.php'] as $item) {
             if ($item[2] == 'nav-menus.php') {
                 continue;
