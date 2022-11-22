@@ -14,7 +14,6 @@ class Config
         'hide_admin_bar' => false,
         'user_whitelist' => [],
         'welcome_message' => false,
-        'move_yoast_to_bottom' => true,
     ];
 
     /**
