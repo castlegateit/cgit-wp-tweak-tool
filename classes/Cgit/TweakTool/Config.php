@@ -12,7 +12,6 @@ class Config
     private $defaults = [
         'force_plain_text_paste' => true,
         'hide_admin_bar' => false,
-        'hide_templates' => [],
         'user_whitelist' => [],
         'welcome_message' => false,
         'move_yoast_to_bottom' => true,
