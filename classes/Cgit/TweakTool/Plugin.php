@@ -12,7 +12,6 @@ class Plugin
     private $tweaks = [
         'AdminBar',
         'Editor',
-        'Notifications',
         'Templates',
         'YoastSeo',
     ];
