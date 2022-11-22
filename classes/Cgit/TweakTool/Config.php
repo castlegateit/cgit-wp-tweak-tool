@@ -12,9 +12,6 @@ class Config
     private $defaults = [
         'force_plain_text_paste' => true,
         'hide_admin_bar' => false,
-        'hide_editor_buttons' => true,
-        'hide_editor_elements' => true,
-        'hide_media_buttons' => false,
         'hide_menus' => [],
         'hide_notifications' => true,
         'hide_templates' => [],
