@@ -15,6 +15,13 @@ class Plugin
     ];
 
     /**
+     * Config instance
+     *
+     * @var Config
+     */
+    private Config $config;
+
+    /**
      * Constructor
      *
      * Load the configuration and loop through each tweak class and instantiate
